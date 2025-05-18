@@ -1,7 +1,7 @@
 <template>
   <main class="flex flex-col h-screen">
     <header class="flex justify-between items-center p-4">
-      <span>logo</span>
+      <NuxtImg class="w-10" src="/logo.png" />
 
       <div class="flex gap-x-4 w-2/6">
         <UButton
@@ -25,7 +25,7 @@
       </div>
     </header>
 
-    <div class="grid grid-cols-4 p-4 flex-1">
+    <div class="grid grid-cols-4 p-4 flex-1 gap-4">
       <aside class="p-4 space-y-4 bg-[#15171C] rounded">
         <!-- left -->
         <header class="flex justify-between items-center">
@@ -61,7 +61,12 @@
             <p>99.9 Hz</p>
           </div>
 
-          <span>copy</span>
+          <UButton
+            class="text-2xl"
+            icon="i-lucide-copy"
+            variant="ghost"
+            size="xl"
+          />
         </div>
 
         <div>
