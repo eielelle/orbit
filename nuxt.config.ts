@@ -13,5 +13,11 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
 
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+
+  runtimeConfig: {
+    apiBase: process.env.API_BASE,
+    apiGeo: process.env.API_GEO,
+    apiSearch: process.env.API_SEARCH
+  }
 })

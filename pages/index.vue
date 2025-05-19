@@ -1,29 +1,6 @@
 <template>
   <main class="flex flex-col h-screen">
-    <header class="flex justify-between items-center p-4">
-      <NuxtImg class="w-10" src="/logo.png" />
-
-      <div class="flex gap-x-4 w-2/6">
-        <UButton
-          class="rounded-full w-10 h-10 flex justify-center items-center"
-          icon="i-lucide-home"
-          size="xl"
-          color="primary"
-          variant="solid"
-        />
-        <UInput
-          class="flex-1 rounded-full"
-          icon="i-lucide-search"
-          size="xl"
-          variant="outline"
-          placeholder="Which station do you want to play?"
-        />
-      </div>
-
-      <div>
-        <UAvatar src="https://github.com/benjamincanac.png" size="xl" />
-      </div>
-    </header>
+    <HeaderComponent />
 
     <div class="grid grid-cols-4 p-4 flex-1 gap-4">
       <aside class="p-4 space-y-4 bg-[#15171C] rounded">
@@ -42,8 +19,9 @@
         />
       </aside>
 
-      <section class="col-span-2 bg-gray-700 h-full">
+      <section class="col-span-2 bg-[#15171C] h-full p-6 rounded">
         <!-- center -->
+         <HomepageComponent />
       </section>
 
       <aside class="p-4 space-y-4 bg-[#15171C] rounded">
