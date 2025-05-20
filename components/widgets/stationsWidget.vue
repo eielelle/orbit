@@ -36,9 +36,9 @@ function playSound(station: Station) {
       <div
         v-for="station in props.data.hits"
         :key="station._id"
-        class="w-[240px] p-4 space-y-4 rounded"
+        class="w-[240px] p-4 space-y-4 rounded-xl"
       >
-        <div class="p-4 bg-amber-700 rounded">
+        <div class="p-4 bg-amber-700 rounded-xl">
           <NuxtImg
             :src="`https://api.dicebear.com/9.x/rings/svg?seed=${station._id}`"
           />

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  const searchStore = useSearchStore();
+const searchStore = useSearchStore();
 </script>
 <template>
   <main class="flex flex-col h-screen">
     <HeaderComponent />
 
     <div class="grid grid-cols-4 p-4 flex-1 gap-4">
-      <aside class="p-4 space-y-4 bg-[#15171C] rounded">
+      <aside class="p-4 space-y-4 bg-[#15171C] rounded-xl">
         <!-- left -->
         <header class="flex justify-between items-center">
           <h2 class="text-lg font-semibold">Your Library</h2>
@@ -22,10 +22,10 @@
         />
       </aside>
 
-      <section class="col-span-2 bg-[#15171C] h-full p-6 rounded">
+      <section class="col-span-2 bg-[#15171C] h-full p-6 rounded-xl">
         <!-- center -->
-         <HomepageComponent v-if="searchStore.query.length <= 0" />
-         <SearchComponent v-else />
+        <HomepageComponent v-if="searchStore.query.length <= 0" />
+        <SearchComponent v-else />
       </section>
 
       <StationComponent />
