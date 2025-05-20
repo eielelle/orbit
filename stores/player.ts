@@ -24,6 +24,15 @@ export const usePlayerStore = defineStore("player", {
     station: null,
   }),
   actions: {
+    togglePlay() {
+      if (this.audio) {
+        if (this.audio.paused && this.station != null) {
+          this.update(this.station)
+        } else {
+          this.audio.pause()
+        }
+      }
+    },
     update(station: Station) {
       if (this.audio != null && this.station != null) {
         this.audio.pause();
@@ -47,7 +56,7 @@ export const usePlayerStore = defineStore("player", {
       this.audio.onerror = () => {
         this.status = "error";
       };
-      
+
       this.audio.play().catch((err) => {
         console.error("Playback failed:", err);
       });
