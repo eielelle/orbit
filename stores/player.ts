@@ -15,6 +15,7 @@ interface Player {
   status: string;
   audio: HTMLAudioElement | null;
   station: Station | null;
+  volume: number;
 }
 
 export const usePlayerStore = defineStore("player", {
@@ -22,14 +23,22 @@ export const usePlayerStore = defineStore("player", {
     status: "stopped",
     audio: null,
     station: null,
+    volume: 1.0,
   }),
   actions: {
+    updateVolume(value: number) {
+      this.volume = value / 100;
+
+      if (this.audio != null) {
+        this.audio.volume = this.volume;
+      }
+    },
     togglePlay() {
       if (this.audio) {
         if (this.audio.paused && this.station != null) {
-          this.update(this.station)
+          this.update(this.station);
         } else {
-          this.audio.pause()
+          this.audio.pause();
         }
       }
     },
@@ -44,6 +53,7 @@ export const usePlayerStore = defineStore("player", {
       }
       this.station = station;
       this.audio = new Audio(station._source.stream);
+      this.audio.volume = this.volume;
 
       this.audio.onwaiting = () => {
         this.status = "buffering";

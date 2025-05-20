@@ -9,24 +9,6 @@
 
     <WidgetsControlCenterWidget />
 
-    <!-- right -->
-    <div class="flex w-1/8">
-      <UButton
-        class="text-2xl"
-        icon="i-lucide-copy"
-        variant="ghost"
-        size="xl"
-      />
-
-      <div class="flex flex-1 items-center gap-1">
-        <UButton
-          class="text-2xl"
-          icon="i-lucide-volume-1"
-          variant="ghost"
-          size="xl"
-        />
-        <USlider class="flex-1" :default-value="50" />
-      </div>
-    </div>
+    <WidgetsControlSideWidget />
   </div>
 </template>
