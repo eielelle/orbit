@@ -7,7 +7,7 @@ interface GeoLocation {
   city: string;
 }
 
-interface Channels {
+interface Stations {
   hits: {
     hits: {
       _id: string;
@@ -27,12 +27,14 @@ export default defineEventHandler(async () => {
   const geo = await $fetch<GeoLocation>(config.apiGeo as string);
 
   if (geo) {
-    const ph = await $fetch<Channels>(`${config.apiSearch}q=${"philippines"}`);
+    const ph = await $fetch<Stations>(`${config.apiSearch}q=${"philippines"}`);
 
     if (ph) {
-      const phFilter = ph.hits.hits.filter(x => x._source.type.toLowerCase() == 'channel')
+      const phFilter = ph.hits.hits.filter(
+        (x) => x._source.type.toLowerCase() == "channel"
+      );
 
-      return { hits: phFilter }
+      return { hits: phFilter };
     }
 
     return ph;

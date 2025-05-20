@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-interface Channel {
+interface Station {
   _id: string;
   _source: {
     code: string;
@@ -14,27 +14,27 @@ interface Channel {
 interface Player {
   isPlaying: boolean;
   audio: HTMLAudioElement | null;
-  channel: Channel | null;
+  station: Station | null;
 }
 
 export const usePlayerStore = defineStore("player", {
   state: (): Player => ({
     isPlaying: false,
     audio: null,
-    channel: null,
+    station: null,
   }),
   actions: {
-    update(channel: Channel) {
-      if (this.audio != null && this.channel != null) {
+    update(station: Station) {
+      if (this.audio != null && this.station != null) {
         this.audio.pause();
         this.audio.src = ""; // Optional: release reference to stream
         this.audio.load(); // Optional: reset playback
         this.audio = null;
 
-        this.channel = null;
+        this.station = null;
       }
-      this.channel = channel;
-      this.audio = new Audio(channel._source.stream);
+      this.station = station;
+      this.audio = new Audio(station._source.stream);
       this.audio.play().catch((err) => {
         console.error("Playback failed:", err);
       });

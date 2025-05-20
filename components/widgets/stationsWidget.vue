@@ -10,7 +10,11 @@ interface Station {
   };
 }
 
-const { data } = await useFetch("/api/v1/stations/home");
+interface Props {
+  data: { hits: Station[] } | null;
+}
+
+const props = defineProps<Props>();
 const playerStore = usePlayerStore();
 
 function playSound(station: Station) {
@@ -19,15 +23,18 @@ function playSound(station: Station) {
 </script>
 
 <template>
-  <div>
-    <p>Stations in the Philippines</p>
-    <!-- {{ data }} -->
+  <!-- stations -->
+  <section>
+    <header>
+      <h1 class="text-3xl font-semibold">Stations</h1>
+      <p>Some stations we found.</p>
+    </header>
     <div
-      v-if="data != null"
-      class="flex flex-wrap justify-evenly justify-last-left gap-6 my-6"
+      v-if="props.data != null"
+      class="flex flex-wrap justify-evenly justify-last-left gap-6"
     >
       <div
-        v-for="station in data.hits"
+        v-for="station in props.data.hits"
         :key="station._id"
         class="w-[240px] p-4 space-y-4 rounded"
       >
@@ -43,5 +50,5 @@ function playSound(station: Station) {
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>

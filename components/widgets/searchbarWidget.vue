@@ -11,7 +11,7 @@ watch(query, (newValue) => {
   if (newValue.length <= 0) {
     searchStore.update(query.value)
   }
-})
+}, { immediate: true })
 </script>
 
 <template>

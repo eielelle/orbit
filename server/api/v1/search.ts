@@ -1,4 +1,4 @@
-interface Channels {
+interface Stations {
   hits: {
     hits: {
       _id: string;
@@ -17,8 +17,15 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const { search } = getQuery(event);
 
-  const data = await $fetch<Channels>(`${config.apiSearch}q=${search}`);
-  console.log(data)
+  const data = await $fetch<Stations>(`${config.apiSearch}q=${search}`);
 
-  return data;
+  if (data) {
+    const dataFilter = data.hits.hits.filter(
+      (x) => x._source.type.toLowerCase() == "channel"
+    );
+
+    return { hits: dataFilter };
+  }
+
+  return null;
 });

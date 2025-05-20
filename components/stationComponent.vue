@@ -4,7 +4,7 @@ const playerStore = usePlayerStore();
 
 <template>
   <aside class="p-4 bg-[#15171C] rounded">
-    <div v-if="playerStore.channel != null" class="space-y-4">
+    <div v-if="playerStore.station != null" class="space-y-4">
       <!-- right -->
       <header class="flex justify-between items-center">
         <h2 class="text-lg font-semibold">Now listening...</h2>
@@ -13,16 +13,16 @@ const playerStore = usePlayerStore();
 
       <div class="w-full aspect-square p-4 bg-amber-700 rounded">
         <NuxtImg
-          :src="`https://api.dicebear.com/9.x/rings/svg?seed=${playerStore.channel?._id}`"
+          :src="`https://api.dicebear.com/9.x/rings/svg?seed=${playerStore.station?._id}`"
         />
       </div>
 
       <div class="flex justify-between items-center">
         <div>
           <h2 class="text-lg font-semibold">
-            {{ playerStore.channel?._source.title }}
+            {{ playerStore.station?._source.title }}
           </h2>
-          <p>{{ playerStore.channel?._source.subtitle }}</p>
+          <p>{{ playerStore.station?._source.subtitle }}</p>
         </div>
 
         <UButton

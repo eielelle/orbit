@@ -28,7 +28,7 @@
          <SearchComponent v-else />
       </section>
 
-      <ChannelComponent />
+      <StationComponent />
     </div>
 
     <div
