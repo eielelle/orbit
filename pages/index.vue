@@ -1,3 +1,6 @@
+<script setup lang="ts">
+  const searchStore = useSearchStore();
+</script>
 <template>
   <main class="flex flex-col h-screen">
     <HeaderComponent />
@@ -21,41 +24,11 @@
 
       <section class="col-span-2 bg-[#15171C] h-full p-6 rounded">
         <!-- center -->
-         <HomepageComponent />
+         <HomepageComponent v-if="searchStore.query.length <= 0" />
+         <SearchComponent v-else />
       </section>
 
-      <aside class="p-4 space-y-4 bg-[#15171C] rounded">
-        <!-- right -->
-        <header class="flex justify-between items-center">
-          <h2 class="text-lg font-semibold">Now listening...</h2>
-          <span>...</span>
-        </header>
-
-        <div class="w-full aspect-square bg-gray-400 rounded" />
-
-        <div class="flex justify-between items-center">
-          <div>
-            <h2 class="text-lg font-semibold">KZ 99.9 FM</h2>
-            <p>99.9 Hz</p>
-          </div>
-
-          <UButton
-            class="text-2xl"
-            icon="i-lucide-copy"
-            variant="ghost"
-            size="xl"
-          />
-        </div>
-
-        <div>
-          <h2 class="text-md font-semibold">About the station</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Laudantium, consequatur aut inventore pariatur alias tenetur maiores
-            velit ipsa sint natus.
-          </p>
-        </div>
-      </aside>
+      <ChannelComponent />
     </div>
 
     <div

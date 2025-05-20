@@ -1,14 +1,20 @@
 <script setup lang="ts">
+interface Channel {
+  _id: string;
+  _source: {
+    code: string;
+    stream: string;
+    title: string;
+    subtitle: string;
+    type: string;
+  };
+}
+
 const {data} = await useFetch("/api/v1/stations/home");
+const playerStore = usePlayerStore();
 
-console.log(toRaw(data.value))
-
-function playSound(streamUrl: string) {
-  alert("CLICKED> PLS WAIT")
-  const audio = new Audio(streamUrl)
-  audio.play().catch(err => {
-    console.error('Playback failed:', err)
-  })
+function playSound(channel: Channel) {
+  playerStore.update(channel)
 }
 </script>
 
@@ -22,7 +28,7 @@ function playSound(streamUrl: string) {
           <NuxtImg :src="`https://api.dicebear.com/9.x/rings/svg?seed=${channel._id}`" />
         </div>
 
-        <div @click="() => playSound(channel._source.stream)">
+        <div @click="() => playSound(channel)">
           <h2 class="font-semibold text-lg">{{ channel._source.title }}</h2>
           <p class="text-sm">{{ channel._source.subtitle }}</p>
         </div>

@@ -11,13 +11,7 @@
         color="primary"
         variant="solid"
       />
-      <UInput
-        class="flex-1 rounded-full"
-        icon="i-lucide-search"
-        size="xl"
-        variant="outline"
-        placeholder="Which station do you want to play?"
-      />
+      <WidgetsSearchbarWidget />
     </div>
 
     <div>
