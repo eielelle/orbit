@@ -12,14 +12,14 @@ interface Station {
 }
 
 interface Player {
-  isPlaying: boolean;
+  status: string;
   audio: HTMLAudioElement | null;
   station: Station | null;
 }
 
 export const usePlayerStore = defineStore("player", {
   state: (): Player => ({
-    isPlaying: false,
+    status: "stopped",
     audio: null,
     station: null,
   }),
@@ -35,6 +35,19 @@ export const usePlayerStore = defineStore("player", {
       }
       this.station = station;
       this.audio = new Audio(station._source.stream);
+
+      this.audio.onwaiting = () => {
+        this.status = "buffering";
+      };
+
+      this.audio.oncanplay = () => {
+        this.status = "ready";
+      };
+
+      this.audio.onerror = () => {
+        this.status = "error";
+      };
+      
       this.audio.play().catch((err) => {
         console.error("Playback failed:", err);
       });
