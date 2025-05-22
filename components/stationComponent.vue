@@ -14,6 +14,7 @@ const playerStore = usePlayerStore();
       <div class="w-full aspect-square p-4 bg-amber-700 rounded-xl">
         <NuxtImg
           :src="`https://api.dicebear.com/9.x/rings/svg?seed=${playerStore.station?._id}`"
+          placeholder
         />
       </div>
 

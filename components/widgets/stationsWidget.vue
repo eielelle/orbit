@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import StationCardWidget from './stationCardWidget.vue';
+
 interface Station {
   _id: string;
   _source: {
@@ -15,11 +17,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const playerStore = usePlayerStore();
-
-function playSound(station: Station) {
-  playerStore.update(station);
-}
 </script>
 
 <template>
@@ -33,22 +30,12 @@ function playSound(station: Station) {
       v-if="props.data != null"
       class="flex flex-wrap justify-evenly justify-last-left gap-6"
     >
-      <div
+      <StationCardWidget
         v-for="station in props.data.hits"
         :key="station._id"
-        class="w-[240px] p-4 space-y-4 rounded-xl"
-      >
-        <div class="p-4 bg-amber-700 rounded-xl">
-          <NuxtImg
-            :src="`https://api.dicebear.com/9.x/rings/svg?seed=${station._id}`"
-          />
-        </div>
-
-        <div @click="() => playSound(station)">
-          <h2 class="font-semibold text-lg">{{ station._source.title }}</h2>
-          <p class="text-sm">{{ station._source.subtitle }}</p>
-        </div>
-      </div>
+        :station="station"
+      />
+      
     </div>
   </section>
 </template>

@@ -15,7 +15,6 @@ const { data } = await useFetch("/api/v1/stations/home");
       <StationCardWidget
         v-for="station in data.hits"
         :key="station._id"
-        class="w-[240px] p-4 space-y-4 rounded-xl"
         :station="station"
       />
     </div>
