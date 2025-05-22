@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const playerStore = usePlayerStore();
-const status = ref("bg-red-400");
+const status = ref("bg-green-400");
 
 playerStore.$subscribe(
   (_, state) => {
@@ -12,7 +12,7 @@ playerStore.$subscribe(
       status.value = "bg-green-400";
     }
 
-    if (state.status == "error") {
+    if (state.status == "error" || state.status == "stopped") {
       status.value = "bg-red-400";
     }
   },

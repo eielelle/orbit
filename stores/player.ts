@@ -44,6 +44,7 @@ export const usePlayerStore = defineStore("player", {
     },
     update(station: Station) {
       if (this.audio != null && this.station != null) {
+        this.status = "buffering";
         this.audio.pause();
         this.audio.src = ""; // Optional: release reference to stream
         this.audio.load(); // Optional: reset playback
@@ -51,6 +52,7 @@ export const usePlayerStore = defineStore("player", {
 
         this.station = null;
       }
+
       this.station = station;
       this.audio = new Audio(station._source.stream);
       this.audio.volume = this.volume;
@@ -61,15 +63,17 @@ export const usePlayerStore = defineStore("player", {
 
       this.audio.oncanplay = () => {
         this.status = "ready";
+
+        this.audio?.play().catch(() => {
+          this.status = "error";
+        });
       };
 
       this.audio.onerror = () => {
-        this.status = "error";
+        if (this.audio?.error) {
+          this.status = "error";
+        }
       };
-
-      this.audio.play().catch((err) => {
-        console.error("Playback failed:", err);
-      });
     },
   },
 });
