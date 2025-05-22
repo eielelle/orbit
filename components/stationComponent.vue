@@ -40,7 +40,7 @@ const playerStore = usePlayerStore();
       <div class="p-4 space-y-4">
         <div class="flex items-center gap-4">
           <h2 class="text-xl font-semibold">About Orbit</h2>
-          <UBadge size="sm" class="bg-amber-200">Preview</UBadge>
+          <UBadge size="sm" class="bg-violet-200">Dev</UBadge>
         </div>
         <p class="text-sm">
           Orbit is a modern radio streaming platform that brings you live,
