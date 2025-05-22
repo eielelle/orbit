@@ -16,6 +16,7 @@ interface Player {
   audio: HTMLAudioElement | null;
   station: Station | null;
   volume: number;
+  muted: boolean;
 }
 
 export const usePlayerStore = defineStore("player", {
@@ -24,8 +25,15 @@ export const usePlayerStore = defineStore("player", {
     audio: null,
     station: null,
     volume: 1.0,
+    muted: false
   }),
   actions: {
+    toggleMute() {
+      if (this.audio) {
+        this.muted = !this.muted
+        this.audio.muted = this.muted
+      }
+    },
     updateVolume(value: number) {
       this.volume = value / 100;
 
